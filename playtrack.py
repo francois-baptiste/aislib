@@ -8,7 +8,7 @@ ships={'kornaros':(239311000,'kornaros.txt','!AIVDM,1,1,,A,53T>HV01hAoM=PqP001HU
 def main():   
   ship='knossos'
   if len(sys.argv)>1: ship=sys.argv[1]
-  try: print ships[ship][2]
+  try: print(ships[ship][2])
   except: pass
   f=open(ships[ship][1])
   l=f.readline()
@@ -20,7 +20,7 @@ def main():
         sog=float(fields[2])
         cog=float(fields[5])
     except ValueError:
-        print >> sys.stderr,l,
+        print(l, end=' ', file=sys.stderr)
         continue
     aismsg = aislib.AISPositionReportMessage(
         mmsi =ships[ship][0],
@@ -37,7 +37,7 @@ def main():
     )
     ais = aislib.AIS(aismsg)
     payload = ais.build_payload(False)
-    print payload
+    print(payload)
     time.sleep(2)
 #   print "nav status: %d" % aismsg.get_attr("status")
     
